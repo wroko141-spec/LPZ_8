@@ -1,9 +1,9 @@
-# ЛПЗ-8. OOP. Наследование и полиморфизм
-# Фамилия Имя Группа
+# ЛПЗ-8 Наследование и полиморфизм
+# Закиров Радель, Миндубаев Адель.
 
-# ==============================================
-# ЗАДАЧА 1: Иерархия сотрудников
-# ==============================================
+
+# Задача 1: Иерархия сотрудников
+
 
 class Employee:
     def __init__(self, name, salary):
@@ -62,9 +62,8 @@ class Manager(Employee):
         return f"{super().get_info()}, размер команды: {self.team_size}"
 
 
-# ==============================================
-# ЗАДАЧА 2: Иерархия животных
-# ==============================================
+# Задача 2 Иерархия животных
+
 
 class Animal:
     def __init__(self, name, age):
@@ -114,9 +113,7 @@ class Fish(Animal):
         return f"{self.name} булькает"
 
 
-# ==============================================
-# ЗАДАЧА 3: Система уведомлений
-# ==============================================
+# Задача 3 Система Уведомлений
 
 class Notifier:
     def send(self, message):
@@ -128,7 +125,7 @@ class EmailNotifier(Notifier):
         self.email_address = email_address
     
     def send(self, message):
-        return f"📧 Email на {self.email_address}: {message}"
+        return f"Email на {self.email_address}: {message}"
 
 
 class SMSNotifier(Notifier):
@@ -136,7 +133,7 @@ class SMSNotifier(Notifier):
         self.phone_number = phone_number
     
     def send(self, message):
-        return f"📱 SMS на {self.phone_number}: {message}"
+        return f"SMS на {self.phone_number}: {message}"
 
 
 class PushNotifier(Notifier):
@@ -144,23 +141,21 @@ class PushNotifier(Notifier):
         self.device_token = device_token
     
     def send(self, message):
-        return f"🔔 Push на {self.device_token}: {message}"
+        return f"Push на {self.device_token}: {message}"
 
 
 def notify_all(notifiers, message):
-    """Полиморфная функция: вызывает send() у всех уведомителей"""
     for notifier in notifiers:
         print(notifier.send(message))
 
 
-# ==============================================
-# ТЕСТИРОВАНИЕ
-# ==============================================
 
-print("=== ЗАДАЧА 1: Сотрудники ===")
-dev = Developer("Иван", 100000, "Python")
-des = Designer("Мария", 80000, "Figma")
-mgr = Manager("Петр", 150000, 10)
+# Тесты 
+
+print("Задача 1 - Сотрудники ")
+dev = Developer("Радель", 100000, "Python")
+des = Designer("Адель", 80000, "Figma")
+mgr = Manager("Егор", 150000, 10)
 
 employees = [dev, des, mgr]
 
@@ -169,7 +164,7 @@ for emp in employees:
     print(emp.work())
     print()
 
-print("=== ЗАДАЧА 2: Животные (ПОЛИМОРФИЗМ) ===")
+print("Задача 2 Животные")
 animals = [
     Mammal("Лев", 5, "коричневый"),
     Bird("Орёл", 3, "2м"),
@@ -177,16 +172,13 @@ animals = [
 ]
 
 for animal in animals:
-    print(animal.make_sound())  # Полиморфизм!
+    print(animal.make_sound())
     print(animal.move())
     print()
 
-print("=== ЗАДАЧА 3: Уведомления (ПОЛИМОРФИЗМ) ===")
+print("Задача 3 Уведомления")
 notifiers = [
-    EmailNotifier("user@mail.ru"),
-    SMSNotifier("+7-999-123-45-67"),
+    EmailNotifier("wroko141@mail.ru"),
+    SMSNotifier("+79178898304"),
     PushNotifier("abc123device")
 ]
-
-message = "Ваше уведомление!"
-notify_all(notifiers, message)
